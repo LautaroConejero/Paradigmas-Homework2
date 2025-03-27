@@ -5,6 +5,7 @@
 #include <list>
 
 using namespace std;
+class Estudiante;
 
 class Curso{
     private:
@@ -12,12 +13,13 @@ class Curso{
         string nombre;
     public:
         Curso(string n);
-        Curso(string n, vector<Estudiante> estudiantes);
-        void agregarEstudiante(Estudiante e);
-        void eliminarEstudiante(Estudiante e);
-        bool Esta_completo();
-        bool operator<(const Estudiante& estudiante);
-        void imprimirEstudiantes_alfabeticamente();
+        string getNombre() const;
+        bool agregarEstudiante(Estudiante* e);
+        void eliminarEstudiante(Estudiante* e);
+        bool existeEstudiante(Estudiante* e) const;
+        bool Esta_completo() const;
+        void imprimirEstudiantes_alfabeticamente() const;
+    friend class Estudiante;
 };
 class Estudiante{
     private:
@@ -25,11 +27,18 @@ class Estudiante{
         string apellido;
         int legajo;
         float promedio;
-        list<pair<Curso, float>> cursos;
+        list<pair<Curso, float>> cursos; 
     public:
         Estudiante(string n, string a, int e);
-        void agregarCurso(Curso c, float calificacion);
-        void eliminarCurso(Curso c);
+        string getNombre_completo() const;
+        int getLegajo() const;
+        float getPromedio() const;
+        void agregarCurso(Curso* c, float calificacion); 
+        void eliminarCurso(Curso* c); 
         void CalcularPromedio();
-
+        bool operator<(const Estudiante& estudiante) const; 
+        void operator<<(const Estudiante& estudiante);
+    friend class Curso;
 };
+
+int consola_cursos();

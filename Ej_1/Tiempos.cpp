@@ -1,5 +1,6 @@
 #include "Tiempos.hpp"
 
+// limpia la terminal
 void clear(){
     cout << "\033[2J\033[1;1H";
     return;
@@ -72,7 +73,7 @@ void Tiempos::setMeridiem(string mer){
     return;
 }
 
-int consola(){
+int consola_tiempo(){
     clear();
     cout<< "bienvenido al programa de tiempo" << endl;
     cout << "Como desear ingresar la hora?" << endl;
@@ -89,92 +90,94 @@ int consola(){
     }
     Tiempos tiempo;
     clear();
-    switch (opcion){
-        case 1 :{
-            int h;
-            cout << "Ingrese la hora: ";
-            cin >> h;
-            Tiempos tiempo(h);
-            while (!tiempo.cheqReloj()){
-                cout << "Hora invalida, intente de nuevo" << endl;
-                cin >> h;
-                tiempo.setHoras(h);
-            }
-            break;
-        }
-        case 2 :{
-            int h, m;
-            cout << "Ingrese la hora: ";
-            cin >> h;
-            cout << "Ingrese los minutos: ";
-            cin >> m;
-            Tiempos tiempo(h, m);
-            while (!tiempo.cheqReloj()){
-                cout << "tiempo invalida, intente de nuevo" << endl;
-                cin >> h;
-                tiempo.setHoras(h);
-                cout << "Ingrese los minutos: ";
-                cin >> m;
-                tiempo.setMinutos(m);
-                }
-            }
-            break;
-        case 3 :{
-            int h, m, s;
-            cout << "Ingrese la hora: ";
-            cin >> h;
-            cout << "Ingrese los minutos: ";
-            cin >> m;
-            cout << "Ingrese los segundos: ";
-            cin >> s;
-            Tiempos tiempo(h, m, s);
-            while (!tiempo.cheqReloj()){
-                cout << "tiempo invalida, intente de nuevo" << endl;
-                cin >> h;
-                tiempo.setHoras(h);
-                cout << "Ingrese los minutos: ";
-                cin >> m;
-                tiempo.setMinutos(m);
-                cout << "Ingrese los segundos: ";
-                cin >> s;
-                tiempo.setSegundos(s);
-            }
-            break;
-        }
-        case 4: {
-            int h, m, s;
-            string mer;
-            cout << "Ingrese la hora: ";
-            cin >> h;
-            cout << "Ingrese los minutos: ";
-            cin >> m;
-            cout << "Ingrese los segundos: ";
-            cin >> s;
-            cout << "Ingrese el meridiem: ";
-            cin >> mer;
-            Tiempos tiempo(h, m, s, mer);
-            while (!tiempo.cheqReloj()){
-                cout << "tiempo invalida, intente de nuevo" << endl;
-                cin >> h;
-                tiempo.setHoras(h);
-                cout << "Ingrese los minutos: ";
-                cin >> m;
-                tiempo.setMinutos(m);
-                cout << "Ingrese los segundos: ";
-                cin >> s;
-                tiempo.setSegundos(s);
-                cout << "Ingrese el meridiem: ";
-                cin >> mer;
-                tiempo.setMeridiem(mer);
-            }
-            break;
-        }
-        case 5: {
-            Tiempos tiempo;
-            break;
-        }
-    }
-    clear();
+    // switch (opcion){
+    //     case 1 :{
+    //         int h;
+    //         cout << "Ingrese la hora: ";
+    //         cin >> h;
+    //         Tiempos tiempo(h);
+    //         while (!tiempo.cheqReloj()){
+    //             cout << "Hora invalida, intente de nuevo" << endl;
+    //             cin >> h;
+    //             tiempo.setHoras(h);
+    //         }
+    //         tiempo.leerHora();
+    //         break;
+    //     }
+    //     case 2 :{
+    //         int h, m;
+    //         cout << "Ingrese la hora: ";
+    //         cin >> h;
+    //         cout << "Ingrese los minutos: ";
+    //         cin >> m;
+    //         Tiempos tiempo(h, m);
+    //         while (!tiempo.cheqReloj()){
+    //             cout << "tiempo invalida, intente de nuevo" << endl;
+    //             cin >> h;
+    //             tiempo.setHoras(h);
+    //             cout << "Ingrese los minutos: ";
+    //             cin >> m;
+    //             tiempo.setMinutos(m);
+    //             }
+    //         }
+    //         break;
+    //     case 3 :{
+    //         int h, m, s;
+    //         cout << "Ingrese la hora: ";
+    //         cin >> h;
+    //         cout << "Ingrese los minutos: ";
+    //         cin >> m;
+    //         cout << "Ingrese los segundos: ";
+    //         cin >> s;
+    //         Tiempos tiempo(h, m, s);
+    //         while (!tiempo.cheqReloj()){
+    //             cout << "tiempo invalida, intente de nuevo" << endl;
+    //             cin >> h;
+    //             tiempo.setHoras(h);
+    //             cout << "Ingrese los minutos: ";
+    //             cin >> m;
+    //             tiempo.setMinutos(m);
+    //             cout << "Ingrese los segundos: ";
+    //             cin >> s;
+    //             tiempo.setSegundos(s);
+    //         }
+    //         break;
+    //     }
+    //     case 4: {
+    //         int h, m, s;
+    //         string mer;
+    //         cout << "Ingrese la hora: ";
+    //         cin >> h;
+    //         cout << "Ingrese los minutos: ";
+    //         cin >> m;
+    //         cout << "Ingrese los segundos: ";
+    //         cin >> s;
+    //         cout << "Ingrese el meridiem: ";
+    //         cin >> mer;
+    //         Tiempos tiempo(h, m, s, mer);
+    //         while (!tiempo.cheqReloj()){
+    //             cout << "tiempo invalida, intente de nuevo" << endl;
+    //             cin >> h;
+    //             tiempo.setHoras(h);
+    //             cout << "Ingrese los minutos: ";
+    //             cin >> m;
+    //             tiempo.setMinutos(m);
+    //             cout << "Ingrese los segundos: ";
+    //             cin >> s;
+    //             tiempo.setSegundos(s);
+    //             cout << "Ingrese el meridiem: ";
+    //             cin >> mer;
+    //             tiempo.setMeridiem(mer);
+    //         }
+    //         break;
+    //     }
+    //     case 5: {
+    //         Tiempos tiempo;
+    //         break;
+    //     }
+
+    // }
+//    clear();
     while(true){
         cout << "Con que deseas continuar"<< endl;
         cout << "1. Leer la hora\n2. Leer los minutos\n3. Leer los segundos\n4. Leer el meridiem\n5. Leer el tiempo completo\n6. Leer el tiempo en formato 24 horas\n7. Cambiar la hora\n8. Cambiar los minutos\n9. Cambiar los segundos\n10. Cambiar el meridiem\n11. Salir" << endl;
