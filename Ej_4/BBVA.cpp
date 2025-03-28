@@ -8,6 +8,7 @@ void Banco::Depositar(double monto){
     cout << " El saldo actual es: " << balance << endl;
     return;
 }
+
 CajaDeAhorro::CajaDeAhorro(string titular, double saldo):
     Banco(titular, saldo), contador_mostrar(0) {}
 void CajaDeAhorro::Retirar(double monto){
@@ -34,6 +35,7 @@ void CajaDeAhorro::mostrarinfo(){
     }
     return;
 }
+
 CuentaCorriente::CuentaCorriente(string titular, double saldo, CajaDeAhorro* cuenta_ahorro):
     Banco(titular, saldo), cuenta_ahorro(cuenta_ahorro){}
 void CuentaCorriente::Retirar(double monto){
@@ -77,6 +79,7 @@ int Consola_BBVA(){
         cin >> saldo; 
     }
     CajaDeAhorro cuenta(titular, saldo);
+
     cout << "Creando tu cuenta corriente..." << endl;
     string titular_cuenta_corriente;
     double saldo_cuenta_corriente;
@@ -91,6 +94,7 @@ int Consola_BBVA(){
         cin >> saldo_cuenta_corriente; 
     }
     CuentaCorriente cuenta_corriente(titular_cuenta_corriente, saldo_cuenta_corriente, &cuenta);
+    
     clear();
     cout << "Bienvenido al sistema de ayuda del banco BBVA" << endl;
     while(true){

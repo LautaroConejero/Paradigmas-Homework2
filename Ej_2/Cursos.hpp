@@ -20,7 +20,6 @@ class Curso{
         int getCantidadEstudiantes() const;
         bool Esta_completo() const;
         void imprimirEstudiantes_alfabeticamente() const;
-    friend class Estudiante;
 };
 class Estudiante{
     private:
@@ -28,9 +27,10 @@ class Estudiante{
         string apellido;
         int legajo;
         float promedio;
-        list<pair<Curso, float>> cursos; 
+        vector<pair<Curso, float>> cursos; 
     public:
         Estudiante(string n, string a, int e);
+        string getApellido() const; 
         string getNombre_completo() const;
         int getLegajo() const;
         float getPromedio() const;
@@ -39,7 +39,6 @@ class Estudiante{
         void CalcularPromedio();
         bool operator<(const Estudiante& estudiante) const; 
         void operator<<(const Estudiante& estudiante);
-    friend class Curso;
 };
 
 int consola_cursos();
