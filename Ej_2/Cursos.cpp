@@ -176,6 +176,10 @@ int consola_cursos(){
                 cout << "El curso no se encuentra completo" << endl;
                 break;
             }
+            case 6:{
+                cout << "Gracias por utilizas el programa de cursos" << endl;
+                return 0;
+            }
         }
     }
     

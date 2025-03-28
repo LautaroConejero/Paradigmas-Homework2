@@ -1,12 +1,13 @@
 #include "Ej_1/Tiempos.cpp"
 #include "Ej_2/Cursos.cpp"
+#include "Ej_4/BBVA.cpp"
 int main(){
-    cout << "Bienvenido al Homework 2";
+    cout << "Bienvenido al Homework 2"<< endl;
     cout << "Elija el ejercicio a ejecutar:" << endl;
-    cout << "1. Ejercicio 1" << endl;
-    cout << "2. Ejercicio 2" << endl;
+    cout << "1. Simulacro de Reloj" << endl;
+    cout << "2. Simulacro de cursos" << endl;
     cout << "3. Ejercicio 3" << endl;
-    cout << "4. Ejercicio 4" << endl;
+    cout << "4. Simulacro de cuenta bancaria" << endl;
     cout << "5. Salir" << endl;
     int eleccion;
     cin >> eleccion;
@@ -29,7 +30,7 @@ int main(){
             break;
         }
         case 4:{
-            consola_cursos();
+            Consola_BBVA();
             break;
         }
         case 5:{

@@ -10,7 +10,7 @@ class Banco {
         Banco(string titular, double saldo);
         void Depositar(double monto);
         virtual void Retirar(double monto) = 0;
-        virtual void mostrarinfo() const = 0;
+        virtual void mostrarinfo() = 0;
 };
 
 class CajaDeAhorro : public Banco {
@@ -19,7 +19,7 @@ class CajaDeAhorro : public Banco {
     public:
         CajaDeAhorro(string titular, double saldo);
         void Retirar(double monto) override;
-        void mostrarinfo() const override;
+        void mostrarinfo() override;
     friend class CuentaCorriente;
 };
 
@@ -29,7 +29,7 @@ class CuentaCorriente : public Banco {
     public:
         CuentaCorriente(string titular, double saldo, CajaDeAhorro* cuenta_ahorro);
         void Retirar(double monto) override;
-        void mostrarinfo() const override;
+        void mostrarinfo() override;
 };
 
 int Consola_BBVA();
