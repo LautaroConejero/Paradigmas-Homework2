@@ -15,8 +15,9 @@ class Curso{
         Curso(string n);
         string getNombre() const;
         bool agregarEstudiante(Estudiante* e);
-        void eliminarEstudiante(Estudiante* e);
-        bool existeEstudiante(Estudiante* e) const;
+        void eliminarEstudiante(int legajo);
+        bool existeEstudiante(int legajo) const;
+        int getCantidadEstudiantes() const;
         bool Esta_completo() const;
         void imprimirEstudiantes_alfabeticamente() const;
     friend class Estudiante;
