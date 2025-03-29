@@ -98,10 +98,10 @@ bool Tiempos::verificar_meridiem(){
     return true;
 }
 bool salir_programa(){
-    cout << "Estas deseando salir? si tu respuesta es Si, escriba s: ";
-    char salir;
+    cout << "Estas deseando salir? si tu respuesta es Si, ingrese 1: ";
+    int salir;
     cin >> salir;
-    if (salir == 's') return true;
+    if (salir == 1) return true;
     return false;
 }
 int consola_tiempo(){

@@ -1,5 +1,6 @@
 #include "Ej_1/Tiempos.cpp"
 #include "Ej_2/Cursos.cpp"
+// #include "Ej_3/Numeros.cpp"
 #include "Ej_4/BBVA.cpp"
 int main(){
     cout << "Bienvenido al Homework 2"<< endl;
@@ -26,7 +27,7 @@ int main(){
             break;
         }
         case 3:{
-            consola_cursos();
+//            consola_numeros();
             break;
         }
         case 4:{

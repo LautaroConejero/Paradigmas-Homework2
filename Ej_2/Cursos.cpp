@@ -1,8 +1,10 @@
 #include "Cursos.hpp"
 #include "memory"
 #define Max_capacidad 20
-// faltaria el punto el b v) y c
-// posible pregunta, le podria permitir que cree un estudiante con diferente nombre y mismo legajo?
+//  La relacion entre los objetos Curso y Estudiante es "agregacion".
+//  La agregación es una relación débil entre objetos, donde el 'todo' (Curso) contiene referencias a las 'partes' (Estudiantes), pero estas partes pueden existir independientemente del todo.
+//  Es por esto, que si un curso desaperece, Los estudiantes se quedarian sin ese curso, pero pueden seguir buscando otro
+//  Y tambien, si los cursos se quedan sin estudiantes, aun asi pueden seguir existiendo, ya que no dependen de los estudiantes
 
 Estudiante::Estudiante(string n, string a, int e):
     nombre(n), apellido(a), legajo(e), promedio(0), cursos() {}
@@ -19,14 +21,14 @@ float Estudiante::getPromedio() const{
     return promedio;
 }
 void Estudiante::agregarCurso(Curso* c, float calificacion){
-    cursos.push_back(make_pair(*c, calificacion));
+    cursos.push_back(make_pair(c, calificacion));
     CalcularPromedio();
     return;
 }
 void Estudiante::eliminarCurso(Curso* curso){
     for (int i = 0; i < cursos.size(); i++){
         pair it = cursos[i];
-        if (it.first.getNombre() == curso->getNombre()){
+        if (it.first->getNombre() == curso->getNombre()){
             cursos.erase(cursos.begin() + i);
         }
         CalcularPromedio();
@@ -53,15 +55,26 @@ void Estudiante::operator<<(const Estudiante& estudiante){
     cout << "Nombre completo : " << estudiante.getNombre_completo() << "\n" << "Legajo : " << estudiante.getLegajo() << "\n" << "Promedio general: " << estudiante.getPromedio() << "\n" << endl;
     return;
 }
+
 Curso::Curso(string n):
     nombre(n), estudiantes() {}
+
+// Constructor de copia
+// Este constructor hace una copia superficial del curso, osea copia el nombre y la lista de estudiantes, pero no copia los estudiantes en si.
+Curso::Curso(const Curso& c){
+    nombre = c.nombre;
+    for (int i = 0; i < c.estudiantes.size(); i++){
+        Estudiante* it = c.estudiantes[i];
+        estudiantes.push_back(it);
+    }
+}
 string Curso::getNombre() const{
     return nombre;
 }
 bool Curso::existeEstudiante(int legajo) const{
     for (int i = 0; i < estudiantes.size(); i++){
-        Estudiante it = estudiantes[i];
-        if (it.getLegajo() == legajo){
+        Estudiante* it = estudiantes[i];
+        if (it->getLegajo() == legajo){
             return true;
         }
     }
@@ -86,14 +99,14 @@ bool Curso::agregarEstudiante(Estudiante* e){
         }
         return false;
     }
-    estudiantes.push_back(*e);
+    estudiantes.push_back(e);
     cout << "El estudiante ha sido ingresado correctamente" << endl;
     return true;
 }
 void Curso::eliminarEstudiante(int legajo){
     for (int i = 0; i < estudiantes.size(); i++){
-        Estudiante it = estudiantes[i];
-        if (it.getLegajo() == legajo){
+        Estudiante* it = estudiantes[i];
+        if (it->getLegajo() == legajo){
             cout << "El estudiante se encuentra en el curso" << endl;
             estudiantes.erase(estudiantes.begin() + i);
             return;
@@ -103,21 +116,82 @@ void Curso::eliminarEstudiante(int legajo){
     return;
 }
 void Curso::imprimirEstudiantes_alfabeticamente() const{
-    vector<Estudiante> estudiantes_ordenados = estudiantes;
-    sort(estudiantes_ordenados.begin(), estudiantes_ordenados.end(), [](const Estudiante& a, const Estudiante& b){
-        return a.getApellido() < b.getApellido();});
+    vector<Estudiante*> estudiantes_ordenados = estudiantes;
+    sort(estudiantes_ordenados.begin(), estudiantes_ordenados.end(), [](const Estudiante* a, const Estudiante* b){
+        return a->getApellido() < b->getApellido();});
     for (int i = 0; i < estudiantes_ordenados.size(); i++){
-        Estudiante it = estudiantes_ordenados[i];
-        cout << "1." << "Nombre completo: " << it.getNombre_completo() << endl;
+        Estudiante* it = estudiantes_ordenados[i];
+        cout << "1." << "Nombre completo: " << it->getNombre_completo() << endl;
     }
 }
+void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos){
+    cout << "Elija uno de los siguientes Alumnos: ";
+    for (int i = 0; i < estudiantes_activos.size(); i++){
+        Estudiante it = estudiantes_activos[i];
+        cout << i+1 << ". "<< it.getNombre_completo() <<" [" << it.getLegajo() << "]" << endl;
+    }
+    cout << "Ingrese el legajo del estudiante: ";
+    int legajo;
+    cin >> legajo;
+    while (true){
+        for (int i = 0; i < estudiantes_activos.size(); i++){
+            Estudiante it = estudiantes_activos[i];
+            if (it.getLegajo() == legajo){
+                if(curso_trabajado.agregarEstudiante(&it)){
+                    it.agregarCurso(&curso_trabajado, it.getPromedio());
+                }
+                break;
+            }
+            else{
+                cout << "El legajo no existe" << endl;
+            }
+        }
+        break;
+    }
+    return;
+}
 
+void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos){
+    string nombre, apellido;
+    int legajo;
+    float calificacion;
+    cout << "Ingrese el nombre del estudiante: ";
+    cin >> nombre;
+    cout << "Ingrese el apellido del estudiante: ";
+    cin >> apellido;
+    cout << "Ingrese el legajo del estudiante: ";
+    cin >> legajo;
+
+    for (int i = 0; i < estudiantes_activos.size(); i++){
+        Estudiante it = estudiantes_activos[i];
+        while (it.getLegajo() == legajo){
+            cout << "El legajo ya existe" << endl;
+            cout << "Nuevo legajo: " << it.getLegajo() << endl;
+        }
+    }
+
+    cout << "Ingrese la calificacion del estudiante: ";
+    cin >> calificacion;
+    while (calificacion < 0 || calificacion > 10){
+        cout << "La calificacion debe ser entre 0 y 10" << endl;
+        cout << "Ingrese la calificacion del estudiante: ";
+        cin >> calificacion;
+    }
+
+    Estudiante* e = new Estudiante(nombre, apellido, legajo);
+    if (curso_trabajado.agregarEstudiante(e)){
+        e->agregarCurso(&curso_trabajado, calificacion); 
+    }   
+    return;           
+}
 int consola_cursos(){
     cout << "Bienvenido al programa de cursos" << endl;
     vector<Curso> cursos_activos;
+    vector<Estudiante> estudiantes_activos;
     Curso curso("Paradigmas de la Programacion");
     cursos_activos.push_back(curso);
     cout << "El curso " << curso.getNombre() << " ha sido creado" << endl;
+    
     while(true){
         cout << "\nQue desea hacer?" << endl;
         cout << "1.Trabajar con un curso existente" << endl;
@@ -177,26 +251,31 @@ int consola_cursos(){
             clear();
             switch (eleccion){
                 case 1:{
-                    string nombre, apellido;
-                    int legajo;
-                    float calificacion;
-                    cout << "Ingrese el nombre del estudiante: ";
-                    cin >> nombre;
-                    cout << "Ingrese el apellido del estudiante: ";
-                    cin >> apellido;
-                    cout << "Ingrese el legajo del estudiante: ";
-                    cin >> legajo;
-                    cout << "Ingrese la calificacion del estudiante: ";
-                    cin >> calificacion;
-                    while (calificacion < 0 || calificacion > 10){
-                        cout << "La calificacion debe ser entre 0 y 10" << endl;
-                        cout << "Ingrese la calificacion del estudiante: ";
-                        cin >> calificacion;
+                    if (curso_trabajado.Esta_completo()){
+                        cout << "El curso esta completo" << endl;
+                        break;
                     }
-                    Estudiante* e = new Estudiante(nombre, apellido, legajo);
-                    if (curso_trabajado.agregarEstudiante(e)){
-                        e->agregarCurso(&curso_trabajado, calificacion); 
-                    }              
+                    cout << "Que quieres?" << endl;
+                    cout << "1. Ingresar un estudiante nuevo" << endl;
+                    cout << "2. Ingresar un estudiante existente" << endl;
+                    cout << "Opcion: ";
+                    int opcion;
+                    cin >> opcion;
+                    while (opcion < 1 || opcion > 2){
+                        cout << "Opcion invalida, intente de nuevo" << endl;
+                        cout << "Opcion: ";
+                        cin >> opcion;  
+                    }
+                    clear();
+                    if (opcion == 2){
+                        if (estudiantes_activos.size() == 0){
+                            cout << "No hay estudiantes existentes" << endl;
+                            break;
+                        }
+                        ingresar_Est_viejo(curso_trabajado, estudiantes_activos);
+                        break;
+                    }
+                    ingresar_Est_nuevo(curso_trabajado, estudiantes_activos);
                     break;
                 }
                 case 2:{
