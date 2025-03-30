@@ -104,7 +104,7 @@ bool salir_programa(){
     if (salir == 1) return true;
     return false;
 }
-int consola_tiempo(){
+int Consola_Tiempo(){
     clear();
     cout<< "bienvenido al programa de tiempo" << endl;
     cout << "Como desear ingresar la hora?" << endl;
@@ -145,6 +145,7 @@ int consola_tiempo(){
     if (!tiempo.verificar_meridiem()) return 0;
     clear();
     while(true){
+        cout << endl;
         cout << "Con que deseas continuar"<< endl;
         cout << "1. Leer la hora\n2. Leer los minutos\n3. Leer los segundos\n4. Leer el meridiem\n5. Leer el tiempo completo\n6. Leer el tiempo en formato 24 horas\n7. Cambiar la hora\n8. Cambiar los minutos\n9. Cambiar los segundos\n10. Cambiar el meridiem\n11. Salir" << endl;
         int eleccion;
@@ -212,6 +213,7 @@ int consola_tiempo(){
                 break;
             }
             case 11:{
+                cout << "Gracias por utilizar el programa de tiempo" << endl;
                 return 0;
             }
         }    

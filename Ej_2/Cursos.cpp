@@ -59,8 +59,10 @@ void Estudiante::operator<<(const Estudiante& estudiante){
 Curso::Curso(string n):
     nombre(n), estudiantes() {}
 
-// Constructor de copia
-// Este constructor hace una copia superficial del curso, osea copia el nombre y la lista de estudiantes, pero no copia los estudiantes en si.
+//  Constructor de copia
+//  Este constructor hace una copia superficial del curso, 
+//  osea copia el nombre y la lista de estudiantes, pero no copia los estudiantes en si. 
+//  Te guardas la direccion de memoria de los estudiantes.
 Curso::Curso(const Curso& c){
     nombre = c.nombre;
     for (int i = 0; i < c.estudiantes.size(); i++){
@@ -184,7 +186,7 @@ void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_
     }   
     return;           
 }
-int consola_cursos(){
+int Consola_Cursos(){
     cout << "Bienvenido al programa de cursos" << endl;
     vector<Curso> cursos_activos;
     vector<Estudiante> estudiantes_activos;

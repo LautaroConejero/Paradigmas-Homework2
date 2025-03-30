@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <memory>
 using namespace std;
 
 class Numero {
@@ -28,11 +30,11 @@ class Num_complejo : public Numero {
         float imaginario;
     public:
         Num_complejo(float v, float i);
-        Numero* suma(Num_complejo* n_C) override;
-        Numero* resta(Num_complejo* n_C) override;
-        Numero* multiplicacion(Num_complejo* n_C) override;
+        Numero* suma(Numero* n_C) override;
+        Numero* resta(Numero* n_C) override;
+        Numero* multiplicacion(Numero* n_C) override;
         virtual string Tostring() const override;
 
 };
 void operaciones(vector<Numero*>& numeros_activos);
-int consola_numeros();
+int Consola_Numeros();

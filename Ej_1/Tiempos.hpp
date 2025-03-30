@@ -27,4 +27,4 @@ class Tiempos{
     bool verificar_meridiem();
 };
 bool salir_programa();
-int consola();
+int Consola_Tiempo();

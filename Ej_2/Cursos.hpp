@@ -44,4 +44,4 @@ class Estudiante{
 
 void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos);
 void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos);
-int consola_cursos();
+int Consola_Cursos();
