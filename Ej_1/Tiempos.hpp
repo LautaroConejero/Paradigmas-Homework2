@@ -28,3 +28,4 @@ class Tiempos{
 };
 bool salir_programa();
 int Consola_Tiempo();
+void clear();

@@ -4,7 +4,10 @@
 #include <vector>
 #include <list>
 
+#define Max_capacidad 20
 using namespace std;
+#ifndef CURSOS_HPP
+#define CURSOS_HPP
 class Estudiante;
 
 class Curso{
@@ -22,26 +25,5 @@ class Curso{
         bool Esta_completo() const;
         void imprimirEstudiantes_alfabeticamente() const;
 };
-class Estudiante{
-    private:
-        string nombre;
-        string apellido;
-        int legajo;
-        float promedio;
-        vector<pair<Curso*, float>> cursos; 
-    public:
-        Estudiante(string n, string a, int e);
-        string getApellido() const; 
-        string getNombre_completo() const;
-        int getLegajo() const;
-        float getPromedio() const;
-        void agregarCurso(Curso* c, float calificacion); 
-        void eliminarCurso(Curso* c); 
-        void CalcularPromedio();
-        bool operator<(const Estudiante& estudiante) const; 
-        void operator<<(const Estudiante& estudiante);
-};
 
-void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos);
-void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos);
-int Consola_Cursos();
+#endif
