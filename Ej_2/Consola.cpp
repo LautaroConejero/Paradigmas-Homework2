@@ -1,5 +1,6 @@
 #include "Consola.hpp"
-
+#include "Cursos.cpp"
+#include "Estudiantes.cpp"
 
 void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos){
     cout << "Elija uno de los siguientes Alumnos: ";

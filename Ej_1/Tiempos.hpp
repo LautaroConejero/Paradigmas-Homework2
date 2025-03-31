@@ -2,7 +2,8 @@
 #include <string>
 using namespace std;
 #include <iomanip>
-
+#ifndef TIEMPOS_HPP
+#define TIEMPOS_HPP
 class Tiempos{
     private:
         int horas;
@@ -29,3 +30,4 @@ class Tiempos{
 bool salir_programa();
 int Consola_Tiempo();
 void clear();
+#endif 

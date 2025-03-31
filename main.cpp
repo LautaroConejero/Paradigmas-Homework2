@@ -1,7 +1,7 @@
-#include "Ej_1/Tiempos.cpp"
-#include "Ej_2/Consola.cpp"
-#include "Ej_3/Numeros.cpp"
-#include "Ej_4/BBVA.cpp"
+#include "Ej_1/Tiempos.hpp"
+#include "Ej_2/Consola.hpp"
+#include "Ej_3/Numeros.hpp"
+#include "Ej_4/BBVA.hpp"
 
 int main(){
     cout << "Bienvenido al Homework 2"<< endl;
@@ -24,7 +24,7 @@ int main(){
             break;
         }
         case 2:{
-            //Consola_Cursos();
+            Consola_Cursos();
             break;
         }
         case 3:{

@@ -1,10 +1,11 @@
 #include "Tiempos.hpp"
 
-// limpia la terminal
 void clear(){
-    cout << "\033[2J\033[1;1H";
+    if (system("clear")) system("cls");
+    else system("clear");
     return;
 }
+
 Tiempos::Tiempos(int h, int m, int s, string mer):
 horas(h), minutos(m), segundos(s), meridiem(mer){}
 

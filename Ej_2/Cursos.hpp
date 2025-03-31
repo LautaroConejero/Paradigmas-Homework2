@@ -8,8 +8,8 @@
 using namespace std;
 #ifndef CURSOS_HPP
 #define CURSOS_HPP
-class Estudiante;
 
+class Estudiante; 
 class Curso{
     private:
         vector<Estudiante*> estudiantes;

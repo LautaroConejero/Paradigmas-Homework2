@@ -3,7 +3,8 @@
 #include <vector>
 #include <memory>
 using namespace std;
-
+#ifndef NUMEROS_HPP
+#define NUMEROS_HPP
 class Numero {
     public:
         virtual Numero* suma(Numero* n) = 0;
@@ -49,3 +50,5 @@ class Num_complejo : public Numero {
 void operaciones(vector<Numero*>& numeros_activos);
 void borar_numeros(vector<Numero*>& numeros_activos);
 int Consola_Numeros();
+void clear();
+#endif
