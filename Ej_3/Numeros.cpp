@@ -58,7 +58,7 @@ shared_ptr<Numero> Num_complejo::resta(shared_ptr<Numero>& n) {
     return make_shared<Num_complejo>(rl, im);
 }
 shared_ptr<Numero> Num_complejo::multiplicacion(shared_ptr<Numero>& n) {
-    shared_ptr<Num_complejo> n_C = dynamic_pointer_cast<Num_complejo>(n);
+    shared_ptr<Num_complejo> n_C = dynamic_pointer_cast<Num_complejo> (n);
     float rl = this->real * n_C->real - this->imaginario * n_C->imaginario;
     float im = this->real * n_C->imaginario + this->imaginario * n_C->real;
     return make_shared<Num_complejo>(rl, im);

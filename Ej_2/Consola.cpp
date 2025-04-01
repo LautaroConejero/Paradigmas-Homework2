@@ -25,7 +25,7 @@ void ingresar_Est_viejo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& 
                         cout << "Ingrese la calificacion del curso del estudiante: ";
                         cin >> promedio;
                     }
-                    it->agregarCurso(&curso_trabajado, it->getPromedio());
+                    it->agregarCurso(&curso_trabajado, promedio);
                 }
                 break;
             }
