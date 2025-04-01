@@ -1,22 +1,31 @@
 #include "Consola.hpp"
 #include "Cursos.cpp"
 #include "Estudiantes.cpp"
+#include <memory>
 
-void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos){
+void ingresar_Est_viejo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& estudiantes_activos){
     cout << "Elija uno de los siguientes Alumnos: ";
     for (int i = 0; i < estudiantes_activos.size(); i++){
-        Estudiante it = estudiantes_activos[i];
-        cout << i+1 << ". "<< it.getNombre_completo() <<" [" << it.getLegajo() << "]" << endl;
+        shared_ptr<Estudiante> it = estudiantes_activos[i];
+        cout << i+1 << ". "<< it->getNombre_completo() <<" [" << it->getLegajo() << "]" << endl;
     }
     cout << "Ingrese el legajo del estudiante: ";
     int legajo;
     cin >> legajo;
     while (true){
         for (int i = 0; i < estudiantes_activos.size(); i++){
-            Estudiante it = estudiantes_activos[i];
-            if (it.getLegajo() == legajo){
-                if(curso_trabajado.agregarEstudiante(&it)){
-                    it.agregarCurso(&curso_trabajado, it.getPromedio());
+            shared_ptr<Estudiante> it = estudiantes_activos[i];
+            if (it->getLegajo() == legajo){
+                if(curso_trabajado.agregarEstudiante(it)){
+                    cout << "Ingrese la calificacion del curso del estudiante: ";
+                    float promedio;
+                    cin >> promedio;
+                    while (promedio < 0 || promedio > 10){
+                        cout << "la calificacion debe ser entre 0 y 10" << endl;
+                        cout << "Ingrese la calificacion del curso del estudiante: ";
+                        cin >> promedio;
+                    }
+                    it->agregarCurso(&curso_trabajado, it->getPromedio());
                 }
                 break;
             }
@@ -29,7 +38,7 @@ void ingresar_Est_viejo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_
     return;
 }
 
-void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_activos){
+void ingresar_Est_nuevo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& estudiantes_activos){
     string nombre, apellido;
     int legajo;
     float calificacion;
@@ -41,10 +50,11 @@ void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_
     cin >> legajo;
 
     for (int i = 0; i < estudiantes_activos.size(); i++){
-        Estudiante it = estudiantes_activos[i];
-        while (it.getLegajo() == legajo){
+        shared_ptr<Estudiante> it = estudiantes_activos[i];
+        while (it->getLegajo() == legajo){
             cout << "El legajo ya existe" << endl;
-            cout << "Nuevo legajo: " << it.getLegajo() << endl;
+            cout << "Nuevo legajo: ";
+            cin >> legajo;
         }
     }
 
@@ -56,16 +66,17 @@ void ingresar_Est_nuevo(Curso& curso_trabajado, vector<Estudiante>& estudiantes_
         cin >> calificacion;
     }
 
-    Estudiante* e = new Estudiante(nombre, apellido, legajo);
+    shared_ptr<Estudiante> e = make_shared<Estudiante>(nombre, apellido, legajo);
     if (curso_trabajado.agregarEstudiante(e)){
         e->agregarCurso(&curso_trabajado, calificacion); 
-    }   
+    }
+    estudiantes_activos.push_back(e);
     return;           
 }
 int Consola_Cursos(){
     cout << "Bienvenido al programa de cursos" << endl;
     vector<Curso> cursos_activos;
-    vector<Estudiante> estudiantes_activos;
+    vector<shared_ptr<Estudiante>> estudiantes_activos;
     Curso curso("Paradigmas de la Programacion");
     cursos_activos.push_back(curso);
     cout << "El curso " << curso.getNombre() << " ha sido creado" << endl;

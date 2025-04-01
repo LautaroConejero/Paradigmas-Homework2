@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <vector>
 #include <utility> 
-
 using namespace std;
 #ifndef ESTUDIANTES_HPP
 #define ESTUDIANTES_HPP
@@ -28,5 +27,7 @@ class Estudiante{
         bool operator<(const Estudiante& estudiante) const; 
         void operator<<(const Estudiante& estudiante);
 };
+
+
 
 #endif 

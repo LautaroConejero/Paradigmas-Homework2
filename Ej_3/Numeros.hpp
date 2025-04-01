@@ -7,9 +7,9 @@ using namespace std;
 #define NUMEROS_HPP
 class Numero {
     public:
-        virtual Numero* suma(Numero* n) = 0;
-        virtual Numero* resta(Numero* n) = 0;
-        virtual Numero* multiplicacion(Numero* n) = 0;
+        virtual shared_ptr<Numero> suma(shared_ptr<Numero>& n) = 0;
+        virtual shared_ptr<Numero> resta(shared_ptr<Numero>& n) = 0;
+        virtual shared_ptr<Numero> multiplicacion(shared_ptr<Numero>& n) = 0;
         virtual string Tostring() const = 0;
 };
 
@@ -18,9 +18,9 @@ class Num_entero : public Numero {
         int entero;
     public:
         Num_entero(int v);
-        Numero* suma(Numero* n_E) override;
-        Numero* resta(Numero* n_E) override;
-        Numero* multiplicacion(Numero* n_E) override;
+        shared_ptr<Numero> suma(shared_ptr<Numero>& n_E) override;
+        shared_ptr<Numero> resta(shared_ptr<Numero>& n_E) override;
+        shared_ptr<Numero> multiplicacion(shared_ptr<Numero>& n_E) override;
         virtual string Tostring() const override;
 };
 
@@ -29,9 +29,9 @@ class Num_real : public Numero {
         float real;
     public:
         Num_real(float v);
-        Numero* suma(Numero* n_R) override;
-        Numero* resta(Numero* n_R) override;
-        Numero* multiplicacion(Numero* n_R) override;
+        shared_ptr<Numero> suma(shared_ptr<Numero>& n_R) override;
+        shared_ptr<Numero> resta(shared_ptr<Numero>& n_R) override;
+        shared_ptr<Numero> multiplicacion(shared_ptr<Numero>& n_R) override;
         virtual string Tostring() const override;
 };
 
@@ -41,14 +41,14 @@ class Num_complejo : public Numero {
         float real;
     public:
         Num_complejo(float v, float i);
-        Numero* suma(Numero* n_C) override;
-        Numero* resta(Numero* n_C) override;
-        Numero* multiplicacion(Numero* n_C) override;
+        shared_ptr<Numero> suma(shared_ptr<Numero>& n_C) override;
+        shared_ptr<Numero> resta(shared_ptr<Numero>& n_C) override;
+        shared_ptr<Numero> multiplicacion(shared_ptr<Numero>& n_C) override;
         virtual string Tostring() const override;
 
 };
-void operaciones(vector<Numero*>& numeros_activos);
-void borar_numeros(vector<Numero*>& numeros_activos);
+void operaciones(vector<shared_ptr<Numero>>& numeros_activos);
+void borar_numeros(vector<shared_ptr<Numero>>& numeros_activos);
 int Consola_Numeros();
 void clear();
 #endif

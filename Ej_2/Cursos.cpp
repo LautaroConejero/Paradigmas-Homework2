@@ -14,7 +14,7 @@ Curso::Curso(string n):
 Curso::Curso(const Curso& c){
     nombre = c.nombre;
     for (int i = 0; i < c.estudiantes.size(); i++){
-        Estudiante* it = c.estudiantes[i];
+        shared_ptr<Estudiante> it = c.estudiantes[i];
         estudiantes.push_back(it);
     }
 }
@@ -23,7 +23,7 @@ string Curso::getNombre() const{
 }
 bool Curso::existeEstudiante(int legajo) const{
     for (int i = 0; i < estudiantes.size(); i++){
-        Estudiante* it = estudiantes[i];
+        shared_ptr<Estudiante> it = estudiantes[i];
         if (it->getLegajo() == legajo){
             return true;
         }
@@ -39,7 +39,7 @@ bool Curso::Esta_completo() const{
     }
     return false;
 }
-bool Curso::agregarEstudiante(Estudiante* e){
+bool Curso::agregarEstudiante(shared_ptr<Estudiante> e){
     if (Esta_completo() || existeEstudiante(e->getLegajo())){
         cout << "El estudiante no pudo ser ingresado" << endl;
         if (Esta_completo()){
@@ -55,9 +55,9 @@ bool Curso::agregarEstudiante(Estudiante* e){
 }
 void Curso::eliminarEstudiante(int legajo){
     for (int i = 0; i < estudiantes.size(); i++){
-        Estudiante* it = estudiantes[i];
+        shared_ptr<Estudiante> it = estudiantes[i];
         if (it->getLegajo() == legajo){
-            cout << "El estudiante se encuentra en el curso" << endl;
+            cout << "El estudiante ha sido eliminado del curso" << endl;
             estudiantes.erase(estudiantes.begin() + i);
             return;
         }
@@ -66,11 +66,14 @@ void Curso::eliminarEstudiante(int legajo){
     return;
 }
 void Curso::imprimirEstudiantes_alfabeticamente() const{
-    vector<Estudiante*> estudiantes_ordenados = estudiantes;
-    sort(estudiantes_ordenados.begin(), estudiantes_ordenados.end(), [](const Estudiante* a, const Estudiante* b){
-        return a->getApellido() < b->getApellido();});
+    vector<shared_ptr<Estudiante>> estudiantes_ordenados = estudiantes;
+    sort(estudiantes_ordenados.begin(), estudiantes_ordenados.end(), comparar_estudiantes);
     for (int i = 0; i < estudiantes_ordenados.size(); i++){
-        Estudiante* it = estudiantes_ordenados[i];
-        cout << "1." << "Nombre completo: " << it->getNombre_completo() << endl;
+        shared_ptr<Estudiante> it = estudiantes_ordenados[i];
+        cout << "1." << "Nombre completo: " << it->getNombre_completo() <<", Promedio: "<<  it->getPromedio()<< ", Legajo: " << it->getLegajo() << endl;
     }
+}
+
+bool comparar_estudiantes(shared_ptr<Estudiante> e1, shared_ptr<Estudiante> e2){
+    return e1->getApellido() < e2->getApellido();
 }

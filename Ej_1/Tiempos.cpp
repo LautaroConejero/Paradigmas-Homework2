@@ -59,7 +59,7 @@ bool Tiempos::verificar_hora(){
         cout << "Hora invalida, intente de nuevo" << endl;
         if (salir_programa()) return false;
         clear();
-        cout << "ingrese nuevamente: ";
+        cout << "ingrese nuevamente la hora: ";
         cin >> h;
         setHoras(h);
     }
@@ -70,7 +70,7 @@ bool Tiempos::verificar_minuto(){
         int m;
         cout << "minuto invalida, intente de nuevo" << endl;
         if (salir_programa()) return false;
-        cout << "ingrese nuevamente: ";
+        cout << "ingrese nuevamente los minutos: ";
         cin >> m;
         setMinutos(m);
     }
@@ -81,7 +81,7 @@ bool Tiempos::verificar_segundo(){
         int s;
         cout << "segundo invalida, intente de nuevo" << endl;
         if (salir_programa()) return false;
-        cout << "ingrese nuevamente: ";
+        cout << "ingrese nuevamente los segundos: ";
         cin >> s;
         setSegundos(s);
     }
@@ -92,7 +92,7 @@ bool Tiempos::verificar_meridiem(){
         string mer;
         cout << "meridiem invalida, intente de nuevo" << endl;
         if (salir_programa()) return false;
-        cout << "ingrese nuevamente: ";
+        cout << "ingrese nuevamente el meridiem: ";
         cin >> mer;
         setMeridiem(mer);
     }
