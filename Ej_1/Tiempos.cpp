@@ -7,7 +7,12 @@ void clear(){
 }
 
 Tiempos::Tiempos(int h, int m, int s, string mer):
-horas(h), minutos(m), segundos(s), meridiem(mer){}
+horas(h), minutos(m), segundos(s), meridiem(mer){
+    verificar_hora();
+    verificar_minuto();
+    verificar_segundo();
+    verificar_meridiem();
+}
 
 void Tiempos::get_Hora() const{
     cout << "Hora: " << horas << endl;
@@ -140,10 +145,6 @@ int Consola_Tiempo(){
         }
     }
     Tiempos tiempo(hora, minuto, segundo, meridiem);
-    if (!tiempo.verificar_hora()) return 0;
-    if (!tiempo.verificar_minuto()) return 0;
-    if (!tiempo.verificar_segundo()) return 0;
-    if (!tiempo.verificar_meridiem()) return 0;
     clear();
     while(true){
         cout << endl;

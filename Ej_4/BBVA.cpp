@@ -31,7 +31,9 @@ void CajaDeAhorro::mostrarinfo(){
         if (balance < 20){
             balance = 0;
         }
-        balance -= 20;
+        else{
+            balance -= 20;
+        }
         cout << "Se ha cobrado una comision de 20" << endl;
     }
     return;
