@@ -1,10 +1,11 @@
+#ifndef NUMEROS_HPP
+#define NUMEROS_HPP
 #include <iostream>
 #include <string>
 #include <vector>
 #include <memory>
 using namespace std;
-#ifndef NUMEROS_HPP
-#define NUMEROS_HPP
+
 class Numero {
     public:
         virtual shared_ptr<Numero> suma(shared_ptr<Numero>& n) = 0;
@@ -47,8 +48,4 @@ class Num_complejo : public Numero {
         virtual string Tostring() const override;
 
 };
-void operaciones(vector<shared_ptr<Numero>>& numeros_activos);
-void borar_numeros(vector<shared_ptr<Numero>>& numeros_activos);
-int Consola_Numeros();
-void clear();
 #endif

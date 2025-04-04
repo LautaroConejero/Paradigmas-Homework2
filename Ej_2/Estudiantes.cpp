@@ -1,4 +1,5 @@
 #include "Estudiantes.hpp"
+#include "Cursos.hpp"
 
 Estudiante::Estudiante(string n, string a, int e):
     nombre(n), apellido(a), legajo(e), promedio(0), cursos() {}

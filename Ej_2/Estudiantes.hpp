@@ -1,11 +1,13 @@
+#ifndef ESTUDIANTES_HPP
+#define ESTUDIANTES_HPP
+
 #include <iostream>
 #include <string>
 #include <algorithm>
 #include <vector>
 #include <utility> 
+
 using namespace std;
-#ifndef ESTUDIANTES_HPP
-#define ESTUDIANTES_HPP
 
 class Curso; 
 class Estudiante{

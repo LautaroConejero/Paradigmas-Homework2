@@ -1,9 +1,10 @@
+#ifndef TIEMPOS_HPP
+#define TIEMPOS_HPP
 #include <iostream>
 #include <string>
 using namespace std;
 #include <iomanip>
-#ifndef TIEMPOS_HPP
-#define TIEMPOS_HPP
+
 class Tiempos{
     private:
         int horas;
@@ -27,7 +28,7 @@ class Tiempos{
     bool verificar_segundo();
     bool verificar_meridiem();
 };
-bool salir_programa();
-int Consola_Tiempo();
-void clear();
 #endif 
+
+bool salir_programa();
+void clear();

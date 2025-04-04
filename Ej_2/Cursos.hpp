@@ -1,14 +1,13 @@
+#ifndef CURSOS_HPP
+#define CURSOS_HPP
 #include <iostream>
 #include <string>
 #include <algorithm>
 #include <vector>
 #include <list>
-
+#include <memory>
 #define Max_capacidad 20
 using namespace std;
-#ifndef CURSOS_HPP
-#define CURSOS_HPP
-#include <memory>
 
 class Estudiante; 
 class Curso{

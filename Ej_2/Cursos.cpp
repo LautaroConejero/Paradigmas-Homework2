@@ -1,4 +1,5 @@
 #include "Cursos.hpp"
+#include "Estudiantes.hpp"
 //  La relacion entre los objetos Curso y Estudiante es "agregacion".
 //  La agregación es una relación débil entre objetos, donde el 'todo' (Curso) contiene referencias a las 'partes' (Estudiantes), pero estas partes pueden existir independientemente del todo.
 //  Es por esto, que si un curso desaperece, Los estudiantes se quedarian sin ese curso, pero pueden seguir buscando otro

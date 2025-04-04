@@ -1,7 +1,8 @@
-#include "Ej_1/Tiempos.hpp"
+#include "Ej_1/consola_tiempos.hpp"
 #include "Ej_2/Consola.hpp"
-#include "Ej_3/Numeros.hpp"
-#include "Ej_4/BBVA.hpp"
+#include "Ej_3/Consola_numeros.hpp"
+#include "Ej_4/Consola_banco.hpp"
+#include "clear.hpp"
 
 int main(){
     cout << "Bienvenido al Homework 2"<< endl;
@@ -20,7 +21,7 @@ int main(){
     clear();
     switch(eleccion){
         case 1:{
-            Consola_Tiempo();
+            //Consola_Tiempo();
             break;
         }
         case 2:{

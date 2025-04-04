@@ -1,8 +1,8 @@
+#ifndef BBVA_HPP
+#define BBVA_HPP
 #include <iostream>
 #include <string>
 using namespace std;
-#ifndef BBVA_HPP
-#define BBVA_HPP
 
 // Para el banco es simple, es protected asi las clasaes "hijas" pueden acceder a los atributos de la clase padre, pero no al reves
 // el resto es publica porque son funciones que se pueden usar desde afuera de la clase
@@ -37,6 +37,4 @@ class CuentaCorriente : public Banco {
         void mostrarinfo() override;
 };
 
-int Consola_BBVA();
-void clear();
 #endif

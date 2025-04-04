@@ -1,6 +1,4 @@
 #include "Consola.hpp"
-#include "Cursos.cpp"
-#include "Estudiantes.cpp"
 #include <memory>
 
 void ingresar_Est_viejo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& estudiantes_activos){
