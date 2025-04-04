@@ -2,7 +2,7 @@
 
 
 Banco::Banco(string titular, double saldo):
-    TitularCuenta(titular), balance(saldo) {}
+     balance(saldo), TitularCuenta(titular) {}
 void Banco::Depositar(double monto){
     balance += monto;
     cout << "Se ha depositado el monto solicitado" << endl;

@@ -17,13 +17,13 @@ void operaciones(vector<shared_ptr<Numero>>& numeros_activos){
     cout << "Seleccione los numeros con los que desea trabajar: " << endl;
     vector<shared_ptr<Numero>> numeros_seleccionados;
     while (true){
-        for (int i = 0; i < numeros_activos.size(); i++){
+        for (size_t i = 0; i < numeros_activos.size(); i++){
             cout << i << ". " << numeros_activos[i]->Tostring() << endl;
         }
         cout << "Opcion: ";
         int numero_seleccionado;
         cin >> numero_seleccionado;
-        while (numero_seleccionado < 0 || numero_seleccionado >= numeros_activos.size()){
+        while (numero_seleccionado < 0 || numero_seleccionado >= static_cast<int>(numeros_activos.size())){
             cout << "Opcion invalida, intente de nuevo" << endl;
             cout << "Opcion: ";
             cin >> numero_seleccionado;  
@@ -37,7 +37,7 @@ void operaciones(vector<shared_ptr<Numero>>& numeros_activos){
         }
     }
     shared_ptr<Numero> temp = numeros_seleccionados[0];
-    for (int i = 1; i < numeros_seleccionados.size(); i++){
+    for (size_t i = 1; i < numeros_seleccionados.size(); i++){
         if (operacion == 1){
             temp = temp->suma(numeros_seleccionados[i]);
         }else if (operacion == 2){

@@ -44,7 +44,7 @@ string Num_real::Tostring() const {
 }
 
 
-Num_complejo::Num_complejo(float v, float i) : real(v), imaginario(i) {}
+Num_complejo::Num_complejo(float v, float i) : imaginario(i), real(v) {}
 shared_ptr<Numero> Num_complejo::suma(shared_ptr<Numero>& n) {
     shared_ptr<Num_complejo> n_C= dynamic_pointer_cast<Num_complejo>(n);
     float rl = this->real + n_C->real;

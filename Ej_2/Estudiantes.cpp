@@ -21,7 +21,7 @@ void Estudiante::agregarCurso(Curso* c, float calificacion){
     return;
 }
 void Estudiante::eliminarCurso(Curso* curso){
-    for (int i = 0; i < cursos.size(); i++){
+    for (size_t i = 0; i < cursos.size(); i++){
         pair it = cursos[i];
         if (it.first->getNombre() == curso->getNombre()){
             cursos.erase(cursos.begin() + i);
@@ -36,7 +36,7 @@ void Estudiante::CalcularPromedio(){
         return;
     }
     float prom = 0;
-    for (int i = 0; i < cursos.size(); i++){
+    for (size_t i = 0; i < cursos.size(); i++){
         pair it = cursos[i];
         prom += it.second;
     }

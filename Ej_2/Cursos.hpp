@@ -12,8 +12,8 @@ using namespace std;
 class Estudiante; 
 class Curso{
     private:
-        vector<shared_ptr<Estudiante>> estudiantes;
         string nombre;
+        vector<shared_ptr<Estudiante>> estudiantes;
     public:
         Curso(string n);
         Curso(const Curso& c); // esto hace una shallow copy del curso, se hace asi porque la gracia es que ambos mantengan el mismo puntero de los estudiantes, y si se borra uno tambien se borre en el otro

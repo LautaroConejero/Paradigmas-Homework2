@@ -3,7 +3,7 @@
 
 void ingresar_Est_viejo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& estudiantes_activos){
     cout << "Elija uno de los siguientes Alumnos: ";
-    for (int i = 0; i < estudiantes_activos.size(); i++){
+    for (size_t i = 0; i < estudiantes_activos.size(); i++){
         shared_ptr<Estudiante> it = estudiantes_activos[i];
         cout << i+1 << ". "<< it->getNombre_completo() <<" [" << it->getLegajo() << "]" << endl;
     }
@@ -11,7 +11,7 @@ void ingresar_Est_viejo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& 
     int legajo;
     cin >> legajo;
     while (true){
-        for (int i = 0; i < estudiantes_activos.size(); i++){
+        for (size_t i = 0; i < estudiantes_activos.size(); i++){
             shared_ptr<Estudiante> it = estudiantes_activos[i];
             if (it->getLegajo() == legajo){
                 if(curso_trabajado.agregarEstudiante(it)){
@@ -47,7 +47,7 @@ void ingresar_Est_nuevo(Curso& curso_trabajado, vector<shared_ptr<Estudiante>>& 
     cout << "Ingrese el legajo del estudiante: ";
     cin >> legajo;
 
-    for (int i = 0; i < estudiantes_activos.size(); i++){
+    for (size_t i = 0; i < estudiantes_activos.size(); i++){
         shared_ptr<Estudiante> it = estudiantes_activos[i];
         while (it->getLegajo() == legajo){
             cout << "El legajo ya existe" << endl;
@@ -107,13 +107,13 @@ int Consola_Cursos(){
         }
         else{
             cout << "Seleccione el curso con el que desea trabajar: " << endl;
-            for (int i = 0; i < cursos_activos.size(); i++){
+            for (size_t i = 0; i < cursos_activos.size(); i++){
                 cout << i + 1 << ". " << cursos_activos[i].getNombre() << endl;
             }
             int curso_seleccionado;
             cout << "Opcion: ";
             cin >> curso_seleccionado;
-            while (curso_seleccionado < 1 || curso_seleccionado > cursos_activos.size()){
+            while (curso_seleccionado < 1 || curso_seleccionado > static_cast<int>(cursos_activos.size())){
                 cout << "opcion invalida, intente de nuevo" << endl;
                 cout << "Opcion: ";
                 cin >> curso_seleccionado;
