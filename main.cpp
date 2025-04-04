@@ -21,7 +21,7 @@ int main(){
     clear();
     switch(eleccion){
         case 1:{
-            //Consola_Tiempo();
+            Consola_Tiempo();
             break;
         }
         case 2:{
